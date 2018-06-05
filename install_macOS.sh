@@ -41,6 +41,7 @@ brew install homebrew/completions/brew-cask-completion
 
 brew install curl vim git python3 wget
 brew cask install pgadmin3
+brew cask install meld
 
 pip3 install virtualenv
 

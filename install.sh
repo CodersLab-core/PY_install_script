@@ -28,7 +28,7 @@ echo
 echo "Instaluję narzędzia systemowe..."
 
 # install all used tools
-sudo apt install -y curl vim git virtualenv openjdk-8-jre-headless tlp tlp-rdw preload
+sudo apt install -y curl vim git virtualenv openjdk-8-jre-headless tlp tlp-rdw preload meld
 sudo tlp start
   
 echo
@@ -47,9 +47,9 @@ sudo chmod 777 -R ~/workspace
 echo
 echo "Instaluję PyCharm"
 # https://download.jetbrains.com/python/pycharm-professional-2017.2.3.tar.gz
-wget -O ~/.coderslab/pycharm-professional-2017.2.3.tar.gz https://download.jetbrains.com/python/pycharm-professional-2017.2.3.tar.gz
-sudo tar -zxvf ~/.coderslab/pycharm-professional-2017.2.3.tar.gz -C /opt/
-rm ~/.coderslab/pycharm-professional-2017.2.3.tar.gz
+wget -O ~/.coderslab/pycharm-professional-2017.2.3.tar.gz https://download.jetbrains.com/python/pycharm-professional-2018.1.3.tar.gz
+sudo tar -zxvf ~/.coderslab/pycharm-professional-2018.1.3.tar.gz -C /opt/
+rm ~/.coderslab/pycharm-professional-2018.1.3.tar.gz
 
 echo
 echo "Dla pewności -- ponownie aktualizuję system..."
@@ -61,8 +61,8 @@ DESKTOP=$(cat <<EOF
 [Desktop Entry]
 Name=PyCharm
 Comment=IDE używane podczas kursu w CodersLab
-Exec=/opt/pycharm-2017.2.3/bin/pycharm.sh
-Icon=/opt/pycharm-2017.2.3/bin/pycharm.png
+Exec=/opt/pycharm-2018.1.3/bin/pycharm.sh
+Icon=/opt/pycharm-2018.1.3/bin/pycharm.png
 Terminal=false
 Type=Application
 StartupNotify=true
