@@ -16,7 +16,7 @@ read -n1 -r -p "Naciśnij dowolny klawisz, by kontynuować."
 
 mkdir ~/.coderslab
 
-# pausing updating grub as it might triger ui
+# pausing updating grub as it might trigger ui
 sudo apt-mark hold grub*
 echo
 echo "Aktualizuję system..."
