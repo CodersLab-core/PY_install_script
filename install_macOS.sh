@@ -56,16 +56,16 @@ brew install --cask java
 echo
 echo "Instaluję PostgreSQL..."
 # install pgsql
-brew install postgresql@14
+brew install postgresql@13
 
 # start service
 brew services start postgresql
 
-sleep 15
+sleep 3
 # change password
 createuser postgres
 createdb coderslab
-psql -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
+psql -U postgres -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
 
 # ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
