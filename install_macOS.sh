@@ -26,6 +26,11 @@ echo "Instaluję homebrew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 echo -e '\nexport PATH=/opt/homebrew/bin:$PATH\n' >> ~/.zshrc
 
+echo "Instaluje system kontroli wersji git"
+brew install git
+echo "Ustawiam najnowsza wersja brew"
+git -C $(brew --repository homebrew/core) checkout master
+
 echo
 echo "Dodaję niezbędne repozytoria homebrew..."
 # add external taps
@@ -40,34 +45,34 @@ echo "Instaluję narzędzia systemowe..."
 # brew tap caskroom/cask
 # brew install caskroom/cask/brew-cask
 # brew install homebrew/completions/brew-cask-completion #deprecated
-
-brew install curl vim git python3 wget screen
+echo "Instaluję Pythona"
+brew install curl vim python3 wget screen
 
 pip3 install --user virtualenv termcolor pycodestyle
 
-brew cask install java
+echo "Instaluję Jave dla Pycharma..."
+brew install --cask java
 
 echo
 echo "Instaluję PostgreSQL..."
 # install pgsql
-brew install postgresql
+brew install postgresql@13
 
 # start service
 brew services start postgresql
 
-sleep 15
+sleep 3
 # change password
 createuser postgres
 createdb coderslab
-psql -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
+psql -U postgres -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
 
 # ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 # launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
-
 echo
 echo "Instaluję PyCharm"
-brew cask install pycharm
+brew install --cask pycharm
 
 echo
 echo "Tworzę katalog roboczy..."
@@ -85,3 +90,4 @@ brew upgrade
 echo "#############################"
 echo "####INSTALACJA ZAKOŃCZONA####"
 echo "#############################"
+echo "Wejdź do Aplikacji i uruchom Pycharm"
