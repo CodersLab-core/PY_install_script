@@ -8,7 +8,7 @@ echo
 echo "Witaj w CodersLab!"
 echo
 echo "Ten skrypt zaktualizuje Twój system, zainstaluje kilka niezbędnych programów,"
-echo "których będziesz potrzebować podczas kursu oraz skonfiguruje bazę danych MySQL."
+echo "których będziesz potrzebować podczas kursu oraz skonfiguruje bazę danych Postgres."
 echo "W tym czasie na ekranie pojawi się wiele komunikatów."
 echo "ABY INSTALACJA SIĘ POWIODŁA MUSISZ MIEĆ DOSTĘP DO INTERNETU W TRAKCIE TRWANIA "
 echo "INSTALACJI!"
@@ -24,39 +24,31 @@ echo
 echo "Instaluję homebrew..."
 # install brew package manager
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-echo -e '\nexport PATH=/opt/homebrew/bin:$PATH\n' >> ~/.zshrc
+echo 'export PATH=/opt/homebrew/bin:$PATH' >> ~/.zshrc
+
+echo "Aktualizuję Homebrew do najnowszej wersji..."
+brew update
 
 echo "Instaluje system kontroli wersji git"
 brew install git
-echo "Ustawiam najnowsza wersja brew"
-git -C $(brew --repository homebrew/core) checkout master
 
 echo
 echo "Dodaję niezbędne repozytoria homebrew..."
 # add external taps
-# brew tap homebrew/dupes #deprecated
-# brew tap homebrew/versions #deprecated
 brew tap homebrew/services
 brew tap homebrew/cask-versions
 echo
 echo "Instaluję narzędzia systemowe..."
 
-# install all used tools
-# brew tap caskroom/cask
-# brew install caskroom/cask/brew-cask
-# brew install homebrew/completions/brew-cask-completion #deprecated
 echo "Instaluję Pythona"
 brew install curl vim python3 wget screen
 
 pip3 install --user virtualenv termcolor pycodestyle
 
-echo "Instaluję Jave dla Pycharma..."
-brew install --cask java
-
 echo
 echo "Instaluję PostgreSQL..."
 # install pgsql
-brew install postgresql@13
+brew install postgresql@14
 
 # start service
 brew services start postgresql
@@ -67,19 +59,15 @@ createuser postgres
 createdb coderslab
 psql -U postgres -c "ALTER USER postgres WITH PASSWORD '${PASSWORD}';"
 
-# ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-# launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-
 echo
-echo "Instaluję PyCharm"
+echo "Instaluję PyCharm Professional"
 brew install --cask pycharm
 
 echo
 echo "Tworzę katalog roboczy..."
 # creating and linkng Workspace
-sudo mkdir ~/workspace
-sleep 3
-sudo chmod 777 -R ~/workspace
+mkdir ~/workspace
+chmod 777 -R ~/workspace
 
 echo
 echo "Dla pewności -- ponownie aktualizuję system..."
